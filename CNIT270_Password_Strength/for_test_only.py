@@ -1,9 +1,12 @@
 """
 This program suppose to select 5 passwords randomly from the given txt file, and 
 """
+# Implemented Modules
+import json
 import random
 import time
-import json
+
+# Third-party Modules
 from selenium import webdriver as wb
 from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
@@ -102,7 +105,7 @@ class SendRequest():
         self.driver.quit()
 
     def get_result(self) -> dict:
-        with open("pwd_strength_text.json", "wb") as file:
+        with open(r"CNIT270_Password_Strength\pwd_strength_text.json", "wb") as file:
             self.result = json.dumps(self.result, indent = 4)
             file.write(str(self.result).encode(encoding="UTF-8"))
         return self.result
