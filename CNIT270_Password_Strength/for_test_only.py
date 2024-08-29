@@ -9,7 +9,6 @@ import time
 # Third-party Modules
 from selenium import webdriver as wb
 from selenium.webdriver.common.by import By
-from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.service import Service
 
 HTTP_ADDRESS_SEC = r"https://www.security.org/how-secure-is-my-password/"
