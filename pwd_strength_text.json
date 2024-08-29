@@ -1,0 +1,52 @@
+{
+  "marijuan": {
+    "time_needed": "Instantly",
+    "Suggestion": [
+      null,
+      "Common Password: In the top 6510 most used passwords",
+      "Possibly a word",
+      "Length: Short",
+      "Character Variety: Just Letters"
+    ]
+  },
+  "masterp": {
+    "time_needed": "Instantly",
+    "Suggestion": [
+      null,
+      "Common Password: In the top 8080 most used passwords",
+      "Possibly a word",
+      "Length: Short",
+      "Character Variety: Just Letters"
+    ]
+  },
+  "marvin": {
+    "time_needed": "Instantly",
+    "Suggestion": [
+      null,
+      "Common Password: In the top 460 most used passwords",
+      "Length: Very short",
+      "Possibly a word",
+      "Character Variety: Just Letters"
+    ]
+  },
+  "parker": {
+    "time_needed": "Instantly",
+    "Suggestion": [
+      null,
+      "Common Password: In the top 400 most used passwords",
+      "Length: Very short",
+      "Possibly a word",
+      "Character Variety: Just Letters"
+    ]
+  },
+  "laptop": {
+    "time_needed": "Instantly",
+    "Suggestion": [
+      null,
+      "Common Password: In the top 3790 most used passwords",
+      "Length: Very short",
+      "Possibly a word",
+      "Character Variety: Just Letters"
+    ]
+  }
+}
