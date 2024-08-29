@@ -1,52 +1,75 @@
 {
-  "marijuan": {
-    "time_needed": "Instantly",
-    "Suggestion": [
-      null,
-      "Common Password: In the top 6510 most used passwords",
-      "Possibly a word",
-      "Length: Short",
-      "Character Variety: Just Letters"
-    ]
-  },
-  "masterp": {
-    "time_needed": "Instantly",
-    "Suggestion": [
-      null,
-      "Common Password: In the top 8080 most used passwords",
-      "Possibly a word",
-      "Length: Short",
-      "Character Variety: Just Letters"
-    ]
-  },
-  "marvin": {
-    "time_needed": "Instantly",
-    "Suggestion": [
-      null,
-      "Common Password: In the top 460 most used passwords",
-      "Length: Very short",
-      "Possibly a word",
-      "Character Variety: Just Letters"
-    ]
-  },
-  "parker": {
-    "time_needed": "Instantly",
-    "Suggestion": [
-      null,
-      "Common Password: In the top 400 most used passwords",
-      "Length: Very short",
-      "Possibly a word",
-      "Character Variety: Just Letters"
-    ]
-  },
-  "laptop": {
-    "time_needed": "Instantly",
-    "Suggestion": [
-      null,
-      "Common Password: In the top 3790 most used passwords",
-      "Length: Very short",
-      "Possibly a word",
-      "Character Variety: Just Letters"
-    ]
-  }
+    "christopher": {
+        "security": {
+            "time_needed": "Instantly",
+            "Suggestion": [
+                "Common Password: In the top 6090 most used passwords",
+                "Possibly a word",
+                "Character Variety: Just Letters"
+            ]
+        },
+        "pwd_meter": {
+            "pwd_score": "12%",
+            "pwd_complexity": "Very Weak"
+        }
+    },
+    "nicole": {
+        "security": {
+            "time_needed": "Instantly",
+            "Suggestion": [
+                "Common Password: In the top 80 most used passwords",
+                "Length: Very short",
+                "Possibly a word",
+                "Character Variety: Just Letters"
+            ]
+        },
+        "pwd_meter": {
+            "pwd_score": "8%",
+            "pwd_complexity": "Very Weak"
+        }
+    },
+    "candy1": {
+        "security": {
+            "time_needed": "Instantly",
+            "Suggestion": [
+                "Common Password: In the top 6450 most used passwords",
+                "Length: Very short",
+                "Possibly a Word and a Number",
+                "Character Variety: No Symbols"
+            ]
+        },
+        "pwd_meter": {
+            "pwd_score": "22%",
+            "pwd_complexity": "Weak"
+        }
+    },
+    "ipswich": {
+        "security": {
+            "time_needed": "Instantly",
+            "Suggestion": [
+                "Common Password: In the top 4940 most used passwords",
+                "Possibly a word",
+                "Length: Short",
+                "Character Variety: Just Letters"
+            ]
+        },
+        "pwd_meter": {
+            "pwd_score": "8%",
+            "pwd_complexity": "Very Weak"
+        }
+    },
+    "zasada": {
+        "security": {
+            "time_needed": "7 milliseconds",
+            "Suggestion": [
+                "Length: Very short",
+                "Possibly a word",
+                "Character Variety: Just Letters"
+            ]
+        },
+        "pwd_meter": {
+            "pwd_score": "5%",
+            "pwd_complexity": "Very Weak"
+        }
+    }
 }

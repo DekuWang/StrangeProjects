@@ -9,7 +9,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.service import Service
 
-HTTP_ADDRESS = r"https://www.security.org/how-secure-is-my-password/"
+HTTP_ADDRESS_SEC = r"https://www.security.org/how-secure-is-my-password/"
+HTTP_ADDRESS_PWDMETER = r"https://passwordmeter.com/"
 BROWSER_USER_DATA = r"C:/Users/97456/AppData/Local/Google/Chrome/User Data/"
 
 ############BROWSER SETUP###############
@@ -18,11 +19,6 @@ chromeOptions.add_argument('--ignore-certificate-errors-spki-list')
 chromeOptions.add_argument("--user-data-dir=" + BROWSER_USER_DATA)
 chromeOptions.add_argument("--profile-directory=Default")
 #########BROWSER SETUP END##############
-
-RESULT_FORMAT = {
-    "time_needed": None,
-    "Suggestion": None
-    }
 
 TIME_PATH = "//p[@class = \"result__text result__time\"]"
 SUGGESTION_PATH = "//div/h2[@class = \"brand-heading\"]"
@@ -49,38 +45,65 @@ class Passwords():
 class SendRequest():
     def __init__(self) -> None:
         self.driver = wb.Chrome(options=chromeOptions ,service=Service(r"chromedriver.exe"))
-        self.driver.get(HTTP_ADDRESS)
-        self.driver.implicitly_wait(5)
-        self.driverAction = ActionChains(self.driver)
         self.result = {}
     
-    def get_response(self, pwd:list[int]):
+    def get_response_sec(self, pwd:list[int]):
         """
         This func is goal to fill the pwd blank and get the result of it.
         """
+        self.driver.get(HTTP_ADDRESS_SEC)
+        self.driver.implicitly_wait(5)
+
         pwd_blank = self.driver.find_element(By.XPATH, "//input[@id = \"password\"]")       # 第一遍会丢失元素
         pwd_blank.send_keys("test")
         pwd_blank = self.driver.find_element(By.XPATH, "//input[@id = \"password\"]")       # 再次抓取元素
 
-
-        while pwd:
-            current_pwd = pwd.pop()
-            pwd_blank.clear()
-            pwd_blank.send_keys(current_pwd)
-            result = RESULT_FORMAT.copy()
+        for i in pwd:
+            pwd_blank.send_keys(i)
+            result = {}
             result["time_needed"] = self.driver.find_element(By.XPATH, TIME_PATH).text
     
-            suggestions = [i.text if i.text != "Top Tip: Protect Yourself" else None for i in self.driver.find_elements(By.XPATH, SUGGESTION_PATH)][:-1]
+            suggestions = [i.text for i in self.driver.find_elements(By.XPATH, SUGGESTION_PATH) if i.text != "Top Tip: Protect Yourself"][:-1]
             result["Suggestion"] = suggestions
+            
+            if not self.result.get(i):
+                self.result[i] = {}
+            self.result[i]["security"] = result
+            pwd_blank.clear()
+        
 
-            self.result[current_pwd] = result
-            time.sleep(1)
+    def get_response_pwd_meter(self, pwd:list[int]):
+        self.driver.get(HTTP_ADDRESS_PWDMETER)
+        time.sleep(1)
 
+        pwd_blank = self.driver.find_element(By.XPATH, "//input[@type=\"password\"]")
+        
+        for i in pwd:
+            pwd_blank.send_keys(i)
+
+            result = {}
+            pwd_score = self.driver.find_element(By.XPATH, "//div[@id=\"score\"]").text
+            pwd_complexity = self.driver.find_element(By.XPATH, "//div[@id=\"complexity\"]").text
+
+            result["pwd_score"] = pwd_score
+            result["pwd_complexity"] = pwd_complexity
+            
+            if not self.result.get(i):
+                self.result[i] = {}
+            self.result[i]["pwd_meter"] = result
+
+            pwd_blank.clear()
+
+    
+    def do_score(self, pwd):
+        self.get_response_sec(pwd)
+        self.get_response_pwd_meter(pwd)
+        
         self.driver.quit()
 
     def get_result(self) -> dict:
         with open("pwd_strength_text.json", "wb") as file:
-            self.result = json.dumps(self.result, indent = 2)
+            self.result = json.dumps(self.result, indent = 4)
             file.write(str(self.result).encode(encoding="UTF-8"))
         return self.result
 
@@ -92,5 +115,5 @@ if __name__ == "__main__":
     path = r"E:\aHomework\Purdue\2024 Fall\CNIT 270\Week 2\tenthousandpasswords.txt"
     test_pwd = Passwords(path)
     test = SendRequest()
-    test.get_response(test_pwd.get_result(5))    
+    test.do_score(test_pwd.get_result(5))    
     test.get_result()
